@@ -44,7 +44,6 @@ exports.getLogin = (req, res, next) => {
         title: 'Wado Panel | Login' ,
         errorMessage : errorMessage,
         SuccessMessage : SuccessMessage,
-        userInfo : req.session.user
       });
 } 
 
@@ -99,7 +98,7 @@ exports.getRegister = (req, res, next) => {
 
     res.render('account/register', {
         path: '/register',
-        title: 'Marjinals | Kayıt Ol',
+        title: 'Wado Server | Register',
         errorMessage: errorMessage,
         SuccessMessage : SuccessMessage
     });
@@ -145,19 +144,7 @@ exports.postRegister = (req, res, next) => {
             sgMail.send(msg);
 
         }).catch(err => {
-            if (err.name == 'ValidationError') {
-                let message = '';
-                for (field in err.errors) {
-                    message += err.errors[field].message + '<br>';
-                }
-                res.render('account/register', {
-                    path: '/register',
-                    title: 'Register',
-                    errorMessage: message
-                });
-            } else {
-                next(err);
-            }
+           res.redirect('/register');
         })
 }
 

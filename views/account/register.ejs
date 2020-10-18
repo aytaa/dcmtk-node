@@ -1,95 +1,90 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html lang="en">
     <head>
-        <meta charset="utf-8">
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
         <title> <%= title %> </title>
-        <meta name="description" content="doobles">
-        <meta name="author" content="doobles">
-        <meta name="robots" content="noindex, nofollow">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <link rel="shortcut icon" href="/admin/img/favicon.ico">
-        <link rel="apple-touch-icon" href="/admin/img/icon57.png" sizes="57x57">
-        <link rel="apple-touch-icon" href="/admin/img/icon72.png" sizes="72x72">
-        <link rel="apple-touch-icon" href="/admin/img/icon76.png" sizes="76x76">
-        <link rel="apple-touch-icon" href="/admin/img/icon114.png" sizes="114x114">
-        <link rel="apple-touch-icon" href="/admin/img/icon120.png" sizes="120x120">
-        <link rel="apple-touch-icon" href="/admin/img/icon144.png" sizes="144x144">
-        <link rel="apple-touch-icon" href="/admin/img/icon152.png" sizes="152x152">
-        <link rel="stylesheet" href="/admin/css/bootstrap.css">
-        <link rel="stylesheet" href="/admin/css/plugins.css">
-        <link rel="stylesheet" href="/admin/css/main.css">
-        <script src="/admin/js/vendor/modernizr-respond.min.js"></script>
-        <link rel="stylesheet" href="/admin/css/iziToast.min.css">
+        <link href="css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" href="/css/iziToast.min.css">
+        <link rel="shortcut icon" href="/img/favicon.ico" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     </head>
-    <body class="login">
-        <!-- Login Container -->
-        <div id="login-container" style="margin-top: 15rem;" >
-            <div id="login-logo">
-                <a href="/">
-                    <img src="/admin/img/marjinal-logo.jpeg" width="150" height="150" alt="logo">
-                </a>
-            </div>
-            <% if (SuccessMessage) { %>
-                <div class="alert alert-success alert-dismissible" role="alert">
-                    <h4><i class="icon fa fa-check"></i> Başarılı !</h4>
-                    <%= SuccessMessage %>
-                </div>
-                <% } %>
-                <% if (errorMessage) { %>
-                <div class="alert alert-danger alert-dismissible" style="border-radius: 0.5em;" role="alert">
-                    <%= errorMessage %>
-                </div>
-                <% } %>
-            <!-- Login Form -->
-            <form  action="/register" method="POST" class="form-horizontal">
-                <div class="form-group">
-                    <a class="login-back">
-                        Marjinal Panel
-                    </a>
-                </div>
-                <div class="form-group">
-                    <div class="col-xs-12">
-                        <div class="input-group">
-                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                            <input name="email" type="email" placeholder="e-posta" required class="form-control">
-                            <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
-                        </div> 
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-xs-12">
-                        <div class="input-group">
-                            <input name="name" type="text" placeholder="isim /soyisim" required class="form-control">
-                            <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-                        </div> 
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-xs-12">
-                        <div class="input-group">
-                            <input name="password" type="password" class="form-control" placeholder="şifre" required>
-                            <span class="input-group-addon"><i class="fa fa-asterisk fa-fw"></i></span>
+    <body class="bg-primary">
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-7">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header">
+                                        <h3 class="text-center font-weight-light my-1">Create Account</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <form method="POST" action="/register">
+                                            <div class="form-row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                                        <label class="small mb-1" for="inputFirstName">First Name</label>
+                                                        <input required name="name" class="form-control py-1" id="inputFirstName" type="text" placeholder="Enter first name" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="inputLastName">Last Name</label>
+                                                        <input required name="surname" class="form-control py-1" id="inputLastName" type="text" placeholder="Enter last name" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="inputEmailAddress">Email</label>
+                                                <input required name="email" class="form-control py-1" id="inputEmailAddress" type="email" aria-describedby="emailHelp" placeholder="Enter email address" />
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="inputPassword">Password</label>
+                                                        <input required name="password" class="form-control py-1" type="password" placeholder="password" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mt-4 mb-0">
+                                                <button class="btn btn-primary btn-block" type="submit" >Create Account</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <div class="small"><a href="/login">Have an account? Go to login</a></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="clearfix">
-                    <div class="btn-group btn-group-sm">
-                        <button type="button" id="login-button-pass" class="btn btn-warning" data-toggle="tooltip" title="Şifremi Unutum !">
-                            <i class="fa fa-lock"></i>
-                        </button>
-                        <button type="submit" class="btn btn-success"><i class="fa fa-arrow-right"></i> Kayıt Ol</button>
+                </main>
+            </div>
+            <div id="layoutAuthentication_footer">
+                <footer class="py-2 bg-light mt-auto">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2020</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </form>
-            <!-- END Login Form -->
+                </footer>
+            </div>
         </div>
-        
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script>!window.jQuery && document.write(decodeURI('%3Cscript src="js/vendor/jquery-1.11.1.min.js"%3E%3C/script%3E'));</script>
-        <script src="/admin/js/vendor/bootstrap.min.js"></script>
-        <script src="/admin/js/plugins.js"></script>
-        <script src="/admin/js/main.js"></script>
-        <script src="/admin/js/iziToast.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+        <script src="/js/iziToast.min.js"></script>
         <script>
             if ('<%- JSON.stringify(SuccessMessage) %>') {
         iziToast.success({

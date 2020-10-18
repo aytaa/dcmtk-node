@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const User = require('../models/user');
 const axios = require('axios');
  
-
+ 
 exports.getIndex = (req, res, next) => {
     
     const SuccessMessage = req.session.SuccessMessage;
