@@ -1,0 +1,359 @@
+<%- include('../includes/head'); -%>
+ 
+
+<body>
+    <div class="loader"></div>
+    <script type="text/javascript" id="cookieinfo"
+	src="/js/cookieinfo.min.js">
+    </script>
+
+    <!-- site -->
+    <div class="site"> 
+        <!-- mobile site__header -->
+        <%- include('../includes/mobile-header'); -%>
+        <!-- mobile site__header / end -->
+         <!-- desktop site__header -->
+         <%- include('../includes/login-header'); -%>
+         <!-- desktop site__header / end -->
+        <!-- site__body -->
+        <div class="site__body">
+            <div class="page-header">
+                <div class="page-header__container container">
+                    <div class="page-header__breadcrumb">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/">Anasayfa</a>
+                                    <svg class="breadcrumb-arrow" width="6px" height="9px">
+                                        <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                    </svg>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">Hesabım</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="page-header__title">
+                        <h2>Hesabım</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-3 d-flex" >
+                            <div class="account-nav flex-grow-1" style="border-radius: 0.5rem;">
+                                <h4 class="account-nav__title"> <%= userInfo.name %></h4>
+                                <ul>
+                                    <li class="account-nav__item  account-nav__item--active ">
+                                        <a href="/hesabim"><i class="fa fa-user" aria-hidden="true"></i> Üyelik Bilgilerim</a>
+                                    </li>
+                                    <li class="account-nav__item">
+                                        <a href="/favorilerim"><i class="fa fa-star" aria-hidden="true"></i> Favorilerim</a>
+                                    </li>
+                                    <li class="account-nav__item">
+                                        <a href="/yorumlarim"><i class="fa fa-comment" aria-hidden="true"></i> Yorumlarım</a>
+                                    </li>
+                                    <li class="account-nav__item">
+                                        <a href="/siparislerim"><i class="fa fa-shopping-cart"></i> Siparişlerim</a>
+                                    </li>
+                                    <li class="account-nav__item ">
+                                        <a href="/adreslerim"><i class="fa fa-address-card"></i> Adreslerim</a>
+                                    </li>
+                                    <li class="account-nav__item ">
+                                        <a href="/sifre-guncelleme"><i class="fa fa-key"></i> Şifre İşlemleri</a>
+                                    </li>
+                                    <li class="account-nav__item ">
+                                        <a href="/logout"><i class="fa fa-sign-out-alt"></i> Çıkış Yap</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-9 mt-4 mt-lg-0">
+                            <div class="dashboard">
+                                <div class="dashboard__profile card profile-card" style="border-radius: 0.4rem;">
+                                    <div class="card-body profile-card__body" >
+                                        <div class="profile-card__avatar">
+                                            <img src="images/avatars/avatar-3.jpg" alt="">
+                                        </div>
+                                        <div class="profile-card__name"> <%= userInfo.name %> </div>
+                                        <div class="profile-card__email"><%= userInfo.email %></div>
+                                        <div class="profile-card__edit">
+                                            <a href="/profilim/<%= userInfo._id %>" class="btn btn-secondary btn-sm">Profil Düzenle</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dashboard__address card address-card address-card--featured" style="border-radius: 0.4rem;">
+                                    <div class="address-card__badge">Geçerli Adres</div>
+                                    <div class="address-card__body">
+                                        <div class="address-card__name"><%= userInfo.name %></div>
+                                        <div class="address-card__row">
+                                            Fevzi Çakmak Mah.<br>
+                                            55060, İlkadım<br>
+                                            Samsun, 
+                                        </div>
+                                        <div class="address-card__row">
+                                            <div class="address-card__row-title">Telefon Numarası</div>
+                                            <div class="address-card__row-content">05413088266</div>
+                                        </div>
+                                        <div class="address-card__row">
+                                            <div class="address-card__row-title">E-posta </div>
+                                            <div class="address-card__row-content"><%= userInfo.email %></div>
+                                        </div>
+                                        <div class="address-card__footer">
+                                            <a href="/adres/428940398402349812">Adres Düzenle</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dashboard__orders card" style="border-radius: 0.4rem;">
+                                    <div class="card-header">
+                                        <h5>Sipariş Geçmişi</h5>
+                                    </div>
+                                    <div class="card-divider"></div>
+                                    <div class="card-table">
+                                        <div class="table-responsive-sm">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Sipariş ID</th>
+                                                        <th>Tarih</th>
+                                                        <th>Durumu</th>
+                                                        <th>Tutar</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><a href="">#8132</a></td>
+                                                        <td>02 Nisan, 2019</td>
+                                                        <td><a href="/">Teslim Edildi</a></td>
+                                                        <td>100.00 TL </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><a href="">#8133</a></td>
+                                                        <td>05 Mayıs, 2020</td>
+                                                        <td><a href="/">Teslim Edildi</a></td>
+                                                        <td>100.00 TL </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><a href="">#8134</a></td>
+                                                        <td>12 Haziran, 2020</td>
+                                                        <td><a href="/">İptal</a></td>
+                                                        <td>100.00 TL </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+               <!-- .block-products-carousel -->
+               <div class="block block-products-carousel" data-layout="grid-4" data-mobile-grid-columns="2">
+                <div class="container">
+                    <div class="block-header">
+                        <h3 class="block-header__title">Süper Ürün , Hesaplı Ürün</h3>
+                        <div class="block-header__divider"></div>
+                        <ul class="block-header__groups-list">
+                            <li><button type="button" class="block-header__group  block-header__group--active ">Hepsi</button></li>
+                            <li><button type="button" class="block-header__group ">Kırtasiye</button></li>
+                            <li><button type="button" class="block-header__group ">Oyuncak</button></li>
+                            <li><button type="button" class="block-header__group ">Mutfak</button></li>
+                        </ul>
+                        <div class="block-header__arrows-list">
+                            <button class="block-header__arrow block-header__arrow--left" type="button">
+                                <svg width="7px" height="11px">
+                                    <use xlink:href="images/sprite.svg#arrow-rounded-left-7x11"></use>
+                                </svg>
+                            </button>
+                            <button class="block-header__arrow block-header__arrow--right" type="button">
+                                <svg width="7px" height="11px">
+                                    <use xlink:href="images/sprite.svg#arrow-rounded-right-7x11"></use>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-products-carousel__slider">
+                        <div class="block-products-carousel__preloader"></div>
+                        <div class="owl-carousel">
+                            <% for (let products of devProducts) { %>
+                            <div class="block-products-carousel__column">
+                                <div class="block-products-carousel__cell">
+                                    <div class="product-card product-card--hidden-actions ">
+                                        <button class="product-card__quickview" type="button">
+                                            <svg width="16px" height="16px">
+                                                <use xlink:href="images/sprite.svg#quickview-16"></use>
+                                            </svg>
+                                            <span class="fake-svg-icon"></span>
+                                        </button>
+                                        <div class="product-card__badges-list">
+                                            <div class="product-card__badge product-card__badge--new">Yeni</div>
+                                        </div>
+                                        <div class="product-card__image product-image">
+                                            <a href="/products/<%= products._id %>" class="product-image__body">
+                                                <img class="product-image__img" src="<%= products.picture1Path %>">
+                                            </a>
+                                        </div>
+                                        <div class="product-card__info">
+                                            <div class="product-card__name">
+                                                <a href="/"><%= products.label %></a>
+                                            </div>
+                                            <div class="product-card__rating">
+                                                <div class="product-card__rating-stars">
+                                                    <div class="rating">
+                                                        <div class="rating__body">
+                                                            <svg class="rating__star rating__star--active" width="13px" height="12px">
+                                                                <g class="rating__fill">
+                                                                    <use xlink:href="images/sprite.svg#star-normal"></use>
+                                                                </g>
+                                                                <g class="rating__stroke">
+                                                                    <use xlink:href="images/sprite.svg#star-normal-stroke"></use>
+                                                                </g>
+                                                            </svg>
+                                                            <div class="rating__star rating__star--only-edge rating__star--active">
+                                                                <div class="rating__fill">
+                                                                    <div class="fake-svg-icon"></div>
+                                                                </div>
+                                                                <div class="rating__stroke">
+                                                                    <div class="fake-svg-icon"></div>
+                                                                </div>
+                                                            </div>
+                                                            <svg class="rating__star rating__star--active" width="13px" height="12px">
+                                                                <g class="rating__fill">
+                                                                    <use xlink:href="images/sprite.svg#star-normal"></use>
+                                                                </g>
+                                                                <g class="rating__stroke">
+                                                                    <use xlink:href="images/sprite.svg#star-normal-stroke"></use>
+                                                                </g>
+                                                            </svg>
+                                                            <div class="rating__star rating__star--only-edge rating__star--active">
+                                                                <div class="rating__fill">
+                                                                    <div class="fake-svg-icon"></div>
+                                                                </div>
+                                                                <div class="rating__stroke">
+                                                                    <div class="fake-svg-icon"></div>
+                                                                </div>
+                                                            </div>
+                                                            <svg class="rating__star rating__star--active" width="13px" height="12px">
+                                                                <g class="rating__fill">
+                                                                    <use xlink:href="images/sprite.svg#star-normal"></use>
+                                                                </g>
+                                                                <g class="rating__stroke">
+                                                                    <use xlink:href="images/sprite.svg#star-normal-stroke"></use>
+                                                                </g>
+                                                            </svg>
+                                                            <div class="rating__star rating__star--only-edge rating__star--active">
+                                                                <div class="rating__fill">
+                                                                    <div class="fake-svg-icon"></div>
+                                                                </div>
+                                                                <div class="rating__stroke">
+                                                                    <div class="fake-svg-icon"></div>
+                                                                </div>
+                                                            </div>
+                                                            <svg class="rating__star rating__star--active" width="13px" height="12px">
+                                                                <g class="rating__fill">
+                                                                    <use xlink:href="images/sprite.svg#star-normal"></use>
+                                                                </g>
+                                                                <g class="rating__stroke">
+                                                                    <use xlink:href="images/sprite.svg#star-normal-stroke"></use>
+                                                                </g>
+                                                            </svg>
+                                                            <div class="rating__star rating__star--only-edge rating__star--active">
+                                                                <div class="rating__fill">
+                                                                    <div class="fake-svg-icon"></div>
+                                                                </div>
+                                                                <div class="rating__stroke">
+                                                                    <div class="fake-svg-icon"></div>
+                                                                </div>
+                                                            </div>
+                                                            <svg class="rating__star " width="13px" height="12px">
+                                                                <g class="rating__fill">
+                                                                    <use xlink:href="images/sprite.svg#star-normal"></use>
+                                                                </g>
+                                                                <g class="rating__stroke">
+                                                                    <use xlink:href="images/sprite.svg#star-normal-stroke"></use>
+                                                                </g>
+                                                            </svg>
+                                                            <div class="rating__star rating__star--only-edge ">
+                                                                <div class="rating__fill">
+                                                                    <div class="fake-svg-icon"></div>
+                                                                </div>
+                                                                <div class="rating__stroke">
+                                                                    <div class="fake-svg-icon"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="product-card__rating-legend"><%= products.price3 %></div>
+                                            </div>
+                                            <ul class="product-card__features-list">
+                                                <li>Speed: 750 RPM</li>
+                                                <li>Power Source: Cordless-Electric</li>
+                                                <li>Battery Cell Type: Lithium</li>
+                                                <li>Voltage: 20 Volts</li>
+                                                <li>Battery Capacity: 2 Ah</li>
+                                            </ul>
+                                        </div>
+                                        <div class="product-card__actions">
+                                            <div class="product-card__availability">
+                                                Availability: <span class="text-success">In Stock</span>
+                                            </div>
+                                            <div class="product-card__prices">
+                                                <%= products.price3 %> <%= products.currency %>
+                                            </div>
+                                            <div class="product-card__buttons">
+                                                <form action="/sepetim" method="POST">
+                                                    <input  type="hidden" value="<%= csrfToken %>" name="_csrf">
+                                                    <input  type="hidden" name="productId" value="<%= products._id %>" >    
+                                                    <button type="submit" class="btn btn-primary product-card__addtocart">Sepete Ekle</button>
+                                                </form>
+                                                <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist" type="button">
+                                                    <svg width="16px" height="16px">
+                                                        <use xlink:href="images/sprite.svg#wishlist-16"></use>
+                                                    </svg>
+                                                    <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span>
+                                                </button>
+                                                <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__compare" type="button">
+                                                    <svg width="16px" height="16px">
+                                                        <use xlink:href="images/sprite.svg#compare-16"></use>
+                                                    </svg>
+                                                    <span class="fake-svg-icon fake-svg-icon--compare-16"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- .block-products-carousel / end -->
+        </div>
+        <!-- site__body / end -->
+        <!-- site__footer -->
+        <%- include('../includes/footer'); -%>
+        <!-- site__footer / end -->
+    </div>
+    <!-- site / end -->
+    <!-- quickview-modal -->
+    <div id="quickview-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+    <!-- quickview-modal / end -->
+    <!-- mobilemenu -->
+    <%- include('../includes/mobile-menu'); -%>
+    <!-- mobilemenu / end -->
+    <!-- photoswipe -->
+    <%- include('../includes/photoswipe'); -%>
+    <!-- photoswipe / end -->
+    <!-- js -->
+    <%- include('../includes/script'); -%>
+</body>
+
+</html>

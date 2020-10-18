@@ -1,0 +1,40 @@
+<%- include('../includes/head'); -%>
+
+<body>
+    <script type="text/javascript" id="cookieinfo"
+	src="/js/cookieinfo.min.js">
+    </script>
+    <!-- site -->
+    <div class="site">
+          <!-- mobile site__header -->
+          <%- include('../includes/mobile-header'); -%>
+          <!-- mobile site__header / end -->
+        <!-- desktop site__header -->
+        <%- include('../includes/product-header'); -%>
+        <!-- desktop site__header / end -->
+        <!-- site__body -->
+        <%- include('../includes/product-body'); -%>
+        <!-- site__body / end -->
+        <!-- site__footer -->
+        <%- include('../includes/footer'); -%>
+        <!-- site__footer / end -->
+    </div>
+    <!-- site / end -->
+    <!-- quickview-modal -->
+    <div id="quickview-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+     <!-- quickview-modal / end -->
+    <!-- mobilemenu -->
+    <%- include('../includes/mobile-menu'); -%>
+    <!-- mobilemenu / end -->
+    <!-- photoswipe -->
+    <%- include('../includes/photoswipe'); -%>
+    <!-- photoswipe / end -->
+    <!-- js -->
+    <%- include('../includes/script'); -%>
+</body>
+
+</html>

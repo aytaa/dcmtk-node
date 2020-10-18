@@ -1,0 +1,252 @@
+<%- include('../includes/head'); -%>
+
+<body>
+    <div class="loader"></div>
+    <!-- site -->
+    <div class="site">
+         <!-- mobile site__header -->
+         <%- include('../includes/mobile-header'); -%>
+         <!-- mobile site__header / end -->
+        <!-- desktop site__header -->
+        <%- include('../includes/login-header'); -%>
+        <!-- desktop site__header / end -->
+        <!-- site__body -->
+        <div class="site__body">
+            <div class="page-header">
+                <div class="page-header__container container">
+                    <div class="page-header__breadcrumb">
+                      
+                    </div>
+                    <div class="page-header__title">
+                        <h1>Sepetim</h1>
+                    </div>
+                </div>
+            </div>
+            <% if (products.length == 0) { %>
+            <div class="block-empty__body">
+                <div class="block-empty__message"><%= userInfo.name %> sepetin şu an boş !</div>
+                <p>
+                   <strong> Dilersen aşağıdaki önerileri inceleyerek hemen alışverişe başlayabilirsin.</strong>
+                </p>
+                <div class="block-empty__actions">
+                    <a class="btn btn-primary btn-sm" href="/">Alışverişe Devam</a>
+                </div>
+            </div>
+            <%} else { %>
+            <div class="cart block">
+                <div class="container">
+                    <table class="cart__table cart-table">
+                        <thead class="cart-table__head">
+                            <tr class="cart-table__row">
+                                <th class="cart-table__column cart-table__column--image"></th>
+                                <th class="cart-table__column cart-table__column--product">Ürün</th>
+                                <th class="cart-table__column cart-table__column--price">Fiyat</th>
+                                <th class="cart-table__column cart-table__column--quantity">Adet</th>
+                                <th class="cart-table__column cart-table__column--total">Tutar</th>
+                                <th class="cart-table__column cart-table__column--remove"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="cart-table__body table-sm" style="border-radius: 0.5rem;">
+                       <% for (let product of products) { %>
+                            <tr class="cart-table__row">
+                                <td class="cart-table__column cart-table__column--image">
+                                    <div class="product-image">
+                                        <a href="" class="product-image__body">
+                                            <img class="product-image__img" src="<%= product.productId.picture1Path %>" alt="">
+                                        </a>
+                                    </div>
+                                </td>
+                                <td class="cart-table__column cart-table__column--product">
+                                    <a href="/products/<%= product.productId._id %>" class="cart-table__product-name"> <%= product.productId.label %> </a>
+                                    <ul class="cart-table__options">
+                                        <li>Renk: <%= product.productId.color %></li>
+                                        <li>Marka: <%= product.productId.brand %></li>
+                                    </ul>
+                                </td>
+                                <td class="cart-table__column cart-table__column--price" data-title="Price"><%= product.productId.price3 %> <%= product.productId.currency %></td>
+                                <td class="cart-table__column cart-table__column--quantity" data-title="Adedi">
+                                    <div class="input-number">
+                                        <input class="form-control input-number__input" type="number" min="1" value="<%= product.quantity %>">
+                                        <div class="input-number__add"></div>
+                                        <div class="input-number__sub"></div>
+                                    </div>
+                                </td>
+                                <td class="cart-table__column cart-table__column--total" data-title="Total">
+                                    <%= totalSum = product.productId.price3*product.quantity %>
+                                </td>
+                                <td class="cart-table__column cart-table__column--remove">
+                                    <form action="/delete-cartitem" method="POST">
+                                        <input type="hidden" value="<%= csrfToken %>" name="_csrf">
+                                        <input type="hidden" name="productid" value="<%= product.productId._id %>">       
+                                        <button type="submit" class="btn btn-light btn-sm btn-svg-icon">
+                                           <i class="fa fa-times"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                    <div class="cart__actions">
+                        <form class="cart__coupon-form">
+                            <label for="input-coupon-code" class="sr-only">Şifre</label>
+                            <input type="text" class="form-control" id="input-coupon-code" placeholder="kupon kodu">
+                            <button type="submit" class="btn btn-primary">Kupon Kullan</button>
+                        </form>
+                        <div class="cart__buttons">
+                            <a href="/" class="btn btn-light">Alışverişe Devam Et</a>
+                            <a href="/teslimat" style="border-radius: 0.5rem;" class="btn btn-primary btn-lg cart__update-button">Alışverişi Tamamla</a>
+                        </div>
+                    </div>
+                    <div class="row justify-content-end pt-5">
+                        <div class="col-12 col-md-7 col-lg-6 col-xl-5">
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+           <!-- .block-products-carousel -->
+           <div class="block block-products-carousel" data-layout="grid-4" data-mobile-grid-columns="2">
+            <div class="container">
+                <div class="block-header">
+                    <h3 class="block-header__title">Süper Ürün , Hesaplı Ürün</h3>
+                    <div class="block-header__divider"></div>
+                    <ul class="block-header__groups-list">
+                        <li><button type="button" class="block-header__group  block-header__group--active ">Hepsi</button></li>
+                        <li><button type="button" class="block-header__group ">Kırtasiye</button></li>
+                        <li><button type="button" class="block-header__group ">Oyuncak</button></li>
+                        <li><button type="button" class="block-header__group ">Mutfak</button></li>
+                    </ul>
+                    <div class="block-header__arrows-list">
+                        <button class="block-header__arrow block-header__arrow--left" type="button">
+                            <svg width="7px" height="11px">
+                                <use xlink:href="images/sprite.svg#arrow-rounded-left-7x11"></use>
+                            </svg>
+                        </button>
+                        <button class="block-header__arrow block-header__arrow--right" type="button">
+                            <svg width="7px" height="11px">
+                                <use xlink:href="images/sprite.svg#arrow-rounded-right-7x11"></use>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-products-carousel__slider">
+                    <div class="block-products-carousel__preloader"></div>
+                    <div class="owl-carousel">
+                        <% for (let product of devProducts) { %>
+                        <div class="block-products-carousel__column">
+                            <div class="block-products-carousel__cell">
+                                <div class="product-card product-card--hidden-actions ">
+                                    <button class="product-card__quickview" type="button">
+                                        <svg width="16px" height="16px">
+                                            <use xlink:href="images/sprite.svg#quickview-16"></use>
+                                        </svg>
+                                        <span class="fake-svg-icon"></span>
+                                    </button>
+                                    <div class="product-card__badges-list">
+                                        <div class="product-card__badge product-card__badge--new">Yeni</div>
+                                    </div>
+                                    <div class="product-card__image product-image">
+                                        <a href="/products/<%= product._id %>" class="product-image__body">
+                                            <img class="product-image__img" src="<%= product.picture1Path %>">
+                                        </a>
+                                    </div>
+                                    <div class="product-card__info">
+                                        <div class="product-card__name">
+                                            <a href="/"><%= product.label %></a>
+                                        </div>
+                                        <div class="product-card__rating">
+                                            <div class="product-card__rating-stars">
+                                                <div class="rating">
+                                                    <div class="rating__body">
+                                                        <svg class="rating__star rating__star--active" width="13px" height="12px">
+                                                            <g class="rating__fill">
+                                                                <use xlink:href="images/sprite.svg#star-normal"></use>
+                                                            </g>
+                                                            <g class="rating__stroke">
+                                                                <use xlink:href="images/sprite.svg#star-normal-stroke"></use>
+                                                            </g>
+                                                        </svg>
+                                                        <div class="rating__star rating__star--only-edge ">
+                                                            <div class="rating__fill">
+                                                                <div class="fake-svg-icon"></div>
+                                                            </div>
+                                                            <div class="rating__stroke">
+                                                                <div class="fake-svg-icon"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-card__rating-legend"><%= product.price3 %></div>
+                                        </div>
+                                        <ul class="product-card__features-list">
+                                            <li>Speed: 750 RPM</li>
+                                            <li>Power Source: Cordless-Electric</li>
+                                            <li>Battery Cell Type: Lithium</li>
+                                            <li>Voltage: 20 Volts</li>
+                                            <li>Battery Capacity: 2 Ah</li>
+                                        </ul>
+                                    </div>
+                                    <div class="product-card__actions">
+                                        <div class="product-card__availability">
+                                            Availability: <span class="text-success">In Stock</span>
+                                        </div>
+                                        <div class="product-card__prices">
+                                            <%= product.price3 %> <%= product.currency %>
+                                        </div>
+                                        <div class="product-card__buttons">
+                                            <form action="/sepetim" method="POST">
+                                                <input  type="hidden" value="<%= csrfToken %>" name="_csrf">
+                                                <input  type="hidden" name="productId" value="<%= product._id %>">    
+                                                <button type="submit" class="btn btn-primary product-card__addtocart">Sepete Ekle</button>
+                                            </form>
+                                            <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist" type="button">
+                                                <svg width="16px" height="16px">
+                                                    <use xlink:href="images/sprite.svg#wishlist-16"></use>
+                                                </svg>
+                                                <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span>
+                                            </button>
+                                            <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__compare" type="button">
+                                                <svg width="16px" height="16px">
+                                                    <use xlink:href="images/sprite.svg#compare-16"></use>
+                                                </svg>
+                                                <span class="fake-svg-icon fake-svg-icon--compare-16"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+             </div>
+        <!-- .block-products-carousel / end -->
+        <!-- site__body / end -->
+        <!-- site__footer -->
+        <%- include('../includes/footer'); -%>
+        <!-- site__footer / end -->
+    </div>
+    <!-- site / end -->
+    <!-- quickview-modal -->
+    <div id="quickview-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+    <!-- quickview-modal / end -->
+    <!-- mobilemenu -->
+    <%- include('../includes/mobile-menu'); -%>
+    <!-- mobilemenu / end -->
+    <!-- photoswipe -->
+    <%- include('../includes/photoswipe'); -%>
+    <!-- photoswipe / end -->
+    <!-- js -->
+    <%- include('../includes/script'); -%>
+</body>
+
+</html>

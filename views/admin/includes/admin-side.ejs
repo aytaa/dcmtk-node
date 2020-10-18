@@ -1,0 +1,89 @@
+          <!-- Sidebar -->
+          <aside id="page-sidebar" class="collapse navbar-collapse navbar-main-collapse">
+            <!-- Sidebar search -->
+            <form id="sidebar-search" action="page_search_results.html" method="post">
+                <div class="input-group">
+                    <input type="text" id="sidebar-search-term" name="sidebar-search-term" placeholder="ara..">
+                    <button><i class="fa fa-search"></i></button>
+                </div>
+            </form>
+            <!-- END Sidebar search -->
+
+            <!-- Primary Navigation -->
+            <nav id="primary-nav">
+                <ul>
+                    <li class="<%= page_name == 'panel' ? 'active' : '' %>">
+                        <a href="/" class="<%= page_name == 'panel' ? 'active' : '' %>"><i class="fa fa-dashboard"></i>Ana Ekran</a>
+                    </li>
+                    <li class="<%= page_name === 'products || add-product' ? 'active' : '' %>">
+                        <a href="#"><i class="fa fa-cubes"></i>Ürün</a>
+                        <ul>
+                            <li>
+                                <a href="/products" class="<%= page_name === 'products' ? 'active' : '' %>"><i class="fa fa-shopping-cart"></i>Ürün Listesi</a>
+                            </li>
+                            <li>
+                                <a href="/add-product" class="<%= page_name === 'add-product' ? 'active' : '' %>"><i class="fa fa-exclamation-triangle"></i>Yeni Ürün Ekle</a>
+                            </li>
+                            <li>
+                                <a href="/admin" class="<%= page_name == 'productsss' ? 'active' : '' %>"><i class="fa fa-magic"></i>Toplu Ürün İşlemleri</a>
+                            </li>
+                            <li>
+                                <a href="/questions" class="<%= page_name == 'productsss' ? 'active' : '' %>"><i class="fa fa-magic"></i>Ürün Sorularım</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="<%= page_name == 'about' ? 'active' : '' %>">
+                        <a href="#"><i class="fa fa-credit-card"></i>Sipariş</a>
+                        <ul>
+                            <li>
+                                <a href="/orders"><i class="fa fa-list-alt"></i>Sipariş Listesi</a>
+                            </li>
+                            <li>
+                                <a href="/products"><i class="fa fa-cube"></i>Kargo Aşamasındakiler</a>
+                            </li>
+                            <li>
+                                <a href="/canceled"><i class="fa fa-money"></i>İade İşlemleri</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="<%= page_name == 'about' ? 'active' : '' %>">
+                        <a href="#"><i class="fa fa-users"></i>Müşteri</a>
+                        <ul>
+                            <li>
+                                <a href="/customers"><i class="fa fa-certificate animation-pulse"></i>Müşteri Listesi</a>
+                            </li>
+                            <li>
+                                <a href="/emails"><i class="fa fa-envelope"></i>E-posta Grubu</a>
+                            </li>
+                            <li>
+                                <a href="page_inbox.html"><i class="fa fa-envelope"></i>Inbox</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="<%= page_name == 'about' ? 'active' : '' %>">
+                        <a href="#"><i class="fa fa-cogs"></i>Ayarlar</a>
+                        <ul>
+                            <li>
+                                <a href="/categories"><i class="fa fa-list-alt" aria-hidden="true"></i>Kategori İşlemleri</a>
+                            </li>
+                            <li>
+                                <a href="/pages"><i class="fa fa-file"></i>Sayfa İşlemleri</a>
+                            </li>
+                            <li>
+                                <a href="/accounts"><i class="fa fa-users"></i>Kullanıcı Ayarları</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="<%= page_name == 'about' ? 'active' : '' %>">
+                        <a href="#"><i class="fa fa-bar-chart-o"></i>Raporlar</a>
+                        <ul>
+                            <li>
+                                <a href="page_search_results.html"><i class="fa fa-file"></i>Search Results</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <!-- END Primary Navigation -->
+        </aside>
+        <!-- END Sidebar -->

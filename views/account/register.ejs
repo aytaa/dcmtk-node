@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <title> <%= title %> </title>
+        <meta name="description" content="doobles">
+        <meta name="author" content="doobles">
+        <meta name="robots" content="noindex, nofollow">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="shortcut icon" href="/admin/img/favicon.ico">
+        <link rel="apple-touch-icon" href="/admin/img/icon57.png" sizes="57x57">
+        <link rel="apple-touch-icon" href="/admin/img/icon72.png" sizes="72x72">
+        <link rel="apple-touch-icon" href="/admin/img/icon76.png" sizes="76x76">
+        <link rel="apple-touch-icon" href="/admin/img/icon114.png" sizes="114x114">
+        <link rel="apple-touch-icon" href="/admin/img/icon120.png" sizes="120x120">
+        <link rel="apple-touch-icon" href="/admin/img/icon144.png" sizes="144x144">
+        <link rel="apple-touch-icon" href="/admin/img/icon152.png" sizes="152x152">
+        <link rel="stylesheet" href="/admin/css/bootstrap.css">
+        <link rel="stylesheet" href="/admin/css/plugins.css">
+        <link rel="stylesheet" href="/admin/css/main.css">
+        <script src="/admin/js/vendor/modernizr-respond.min.js"></script>
+        <link rel="stylesheet" href="/admin/css/iziToast.min.css">
+    </head>
+    <body class="login">
+        <!-- Login Container -->
+        <div id="login-container" style="margin-top: 15rem;" >
+            <div id="login-logo">
+                <a href="/">
+                    <img src="/admin/img/marjinal-logo.jpeg" width="150" height="150" alt="logo">
+                </a>
+            </div>
+            <% if (SuccessMessage) { %>
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <h4><i class="icon fa fa-check"></i> Başarılı !</h4>
+                    <%= SuccessMessage %>
+                </div>
+                <% } %>
+                <% if (errorMessage) { %>
+                <div class="alert alert-danger alert-dismissible" style="border-radius: 0.5em;" role="alert">
+                    <%= errorMessage %>
+                </div>
+                <% } %>
+            <!-- Login Form -->
+            <form  action="/register" method="POST" class="form-horizontal">
+                <div class="form-group">
+                    <a class="login-back">
+                        Marjinal Panel
+                    </a>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <div class="input-group">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <input name="email" type="email" placeholder="e-posta" required class="form-control">
+                            <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+                        </div> 
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <div class="input-group">
+                            <input name="name" type="text" placeholder="isim /soyisim" required class="form-control">
+                            <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                        </div> 
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <div class="input-group">
+                            <input name="password" type="password" class="form-control" placeholder="şifre" required>
+                            <span class="input-group-addon"><i class="fa fa-asterisk fa-fw"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <div class="btn-group btn-group-sm">
+                        <button type="button" id="login-button-pass" class="btn btn-warning" data-toggle="tooltip" title="Şifremi Unutum !">
+                            <i class="fa fa-lock"></i>
+                        </button>
+                        <button type="submit" class="btn btn-success"><i class="fa fa-arrow-right"></i> Kayıt Ol</button>
+                    </div>
+                </div>
+            </form>
+            <!-- END Login Form -->
+        </div>
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script>!window.jQuery && document.write(decodeURI('%3Cscript src="js/vendor/jquery-1.11.1.min.js"%3E%3C/script%3E'));</script>
+        <script src="/admin/js/vendor/bootstrap.min.js"></script>
+        <script src="/admin/js/plugins.js"></script>
+        <script src="/admin/js/main.js"></script>
+        <script src="/admin/js/iziToast.min.js"></script>
+        <script>
+            if ('<%- JSON.stringify(SuccessMessage) %>') {
+        iziToast.success({
+                message:  '<%- JSON.stringify(SuccessMessage) %>',
+                position : 'topRight',
+                timeout: 3000,
+                progressBar: false,
+                close: false,
+                color : 'green'
+            });
+        } else if ('<%- JSON.stringify(errorMessage) %>') {
+        iziToast.error({
+                message:  '<%- JSON.stringify(errorMessage) %>',
+                position : 'topRight'
+            });
+        } else {
+        //  block of code to be executed if the condition1 is false and condition2 is false
+        }
+        </script>
+    </body>
+</html>

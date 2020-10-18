@@ -1,0 +1,39 @@
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="/admin/js/vendor/bootstrap.min.js"></script>
+<script src="/admin/js/plugins.js"></script>
+<script src="/admin/js/main.js"></script>
+<script src="/admin/js/ckeditor/ckeditor.js"></script>
+<script>
+    $(function () {
+        /* Initialize Datatables */
+        $('#example-datatables').dataTable({columnDefs: [{orderable: false, targets: [0]}]});
+        $('#example-datatables2').dataTable();
+        $('#example-datatables3').dataTable();
+        $('.dataTables_filter input').attr('placeholder', 'ara..');
+    });
+</script>
+<script src="/admin/js/iziToast.min.js"></script>
+<script>
+    if ('<%- JSON.stringify(SuccessMessage) %>') {
+iziToast.success({
+        message:  '<%- JSON.stringify(SuccessMessage) %>',
+        position : 'topRight',
+        timeout: 3000,
+        progressBar: false,
+        close: false,
+        color : 'green'
+    });
+} else if ('<%- JSON.stringify(errorMessage) %>') {
+iziToast.error({
+        message:  '<%- JSON.stringify(errorMessage) %>',
+        position : 'topRight'
+    });
+} else {
+//  block of code to be executed if the condition1 is false and condition2 is false
+}
+</script>
+<script>
+    $(window).load(function() {
+    $(".loader").fadeOut("slow");
+  });
+  </script>

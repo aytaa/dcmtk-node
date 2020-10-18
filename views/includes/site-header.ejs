@@ -1,0 +1,273 @@
+   <!-- desktop site__header -->
+   <header class="site__header d-lg-block d-none">
+    <div class="site-header">
+         <!-- .banner -->
+        <!-- .banner end -->
+        <div class="site-header__topbar topbar">
+            <div class="topbar__container container">
+                <div class="topbar__row">
+                    <div class="topbar__item topbar__item--link">
+                        <a class="topbar-link" href="/hakkimizda">Hakkımızda</a>
+                    </div>
+                    <div class="topbar__item topbar__item--link">
+                        <a class="topbar-link" href="/siparislerim">Siparişlerim</a>
+                    </div>
+                    <div class="topbar__item topbar__item--link">
+                        <a class="topbar-link" href="/kargom-nerede">Kargom Nerede ?</a>
+                    </div>
+                    <div class="topbar__item topbar__item--link">
+                        <a class="topbar-link" href="/firsatlar">Günün Fırsatları</a>
+                    </div>
+                    <div class="topbar__spring"></div>
+                    <div class="topbar__item topbar__item--link">
+                        <a class="topbar-link" href="/yardim-destek">Yardım & Destek</a>
+                    </div>
+                    <div class="topbar__item topbar__item--link">
+                        <a class="topbar-link" href="/bugun-teslimat">Bugün Teslimat</a>
+                    </div>
+                    <div class="topbar__item topbar__item--link">
+                        <a class="topbar-link" href="/kampanyalar">Kampanyalar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- .topbar / end -->
+        <div class="site-header__middle container">
+            <div class="site-header__logo">
+                <a href="/">
+                <img src="/images/logo.jpeg" width="150" height="100" alt="samsun acikpazaravm hırdavat züccaciye logo">
+                </a>
+            </div>
+            <div class="site-header__search">
+                <div class="search search--location--header ">
+                    <div class="search__body">
+                        <form class="search__form" action="">
+                            <input class="search__input" name="search" placeholder="ürün,kategori marka ara..." aria-label="Site search" type="text" autocomplete="off">
+                            <button class="search__button search__button--type--submit" type="submit">
+                                <svg width="20px" height="20px">
+                                    <use xlink:href="/images/sprite.svg#search-20"></use>
+                                </svg>
+                            </button>
+                            <button class="search__button search__button--type--close" type="button">
+                                <svg width="20px" height="20px">
+                                    <use xlink:href="images/sprite.svg#cross-20"></use>
+                                </svg>
+                            </button>
+                            <div class="search__border"></div>
+                        </form>
+                        <div class="search__suggestions suggestions suggestions--location--header"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="site-header__phone">
+                <div class="site-header__phone-title">Müşteri Hizmetleri</div>
+                <div class="site-header__phone-number">(554) 209-21-37</div>
+            </div>
+        </div>
+        <div class="site-header__nav-panel">
+            <!-- data-sticky-mode - one of [pullToShow, alwaysOnTop] -->
+            <div class="nav-panel nav-panel--sticky" data-sticky-mode="pullToShow">
+                <div class="nav-panel__container container">
+                    <div class="nav-panel__row">
+                        <div class="nav-panel__departments">
+                            <!-- .departments -->
+                            <div class="departments  departments--open departments--fixed " data-departments-fixed-by=".block-slideshow">
+                                <div class="departments__body">
+                                    <div class="departments__links-wrapper">
+                                        <div class="departments__submenus-container"></div>
+                                        <ul class="departments__links">
+                                            <% for (let devCategories of categories) { %>
+                                            <li class="departments__item">
+                                                <a class="departments__item-link" href="http://localhost:3000/<%= devCategories.slug %>">
+                                                    <%= devCategories.name %>
+                                                </a>
+                                            </li>
+                                            <% } %>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button class="departments__button">
+                                    <svg class="departments__button-icon" width="18px" height="14px">
+                                        <use xlink:href="images/sprite.svg#menu-18x14"></use>
+                                    </svg>
+                                    Tüm Kategoriler
+                                    <i class="fas fa-arrow-up"></i>
+                                </button>
+                            </div>
+                            <!-- .departments / end -->
+                        </div>
+                        <!-- .nav-links --> 
+                        <div class="nav-panel__nav-links nav-links">
+                            <ul class="nav-links__list">
+                                <% for (let devCategories of categories) { %>
+                                <li class="nav-links__item ">
+                                    <a class="nav-links__item-link" href="/">
+                                        <div class="nav-links__item-body">
+                                            <%= devCategories.name %>
+                                        </div>
+                                    </a>
+                                </li>
+                                <% } %>
+                            </ul>
+                        </div>
+                        <!-- .nav-links / end -->
+                        <div class="nav-panel__indicators">
+                            <div class="indicator">
+                                <a href="/favorilerim" class="indicator__button">
+                                    <span class="indicator__area">
+                                       <i class="fa fa-heart"></i>
+                                        <span class="indicator__value">0</span>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="indicator indicator--trigger--click">
+                                <a href="/sepetim" class="indicator__button">
+                                    <span class="indicator__area">
+                                       <i class="fa fa-shopping-cart"></i>
+                                        <% if (isAuthenticated) { %>
+                                            <span class="indicator__value">
+                                                <%= userInfo.cart.items.length %>
+                                            </span>
+                                            <%} else { %>
+                                                <span class="indicator__value">
+                                                    0
+                                                </span>
+                                                <% } %>
+                                    </span>
+                                </a>
+                                <div class="indicator__dropdown">
+                                    <!-- .dropcart -->
+                                    <% if (isAuthenticated) { %>
+                                    <div class="dropcart dropcart--style--dropdown">
+                                        <div class="dropcart__body">
+                                            <div class="dropcart__products-list">
+                                                <% for (let product of products) { %>
+                                                <div class="dropcart__product">
+                                                    <div class="product-image dropcart__product-image">
+                                                        <a href="" class="product-image__body">
+                                                            <img class="product-image__img" src="<%= product.productId %>" alt="">
+                                                        </a>
+                                                    </div>
+                                                    <div class="dropcart__product-info">
+                                                        <div class="dropcart__product-name"><a href="/products/<%= product.productId %>"><%= product.label %></a></div>
+                                                        <ul class="dropcart__product-options">
+                                                            <li>Renk: <%= product.color %></li>
+                                                        </ul>
+                                                        <div class="dropcart__product-meta">
+                                                            <span class="dropcart__product-quantity"><%= product.quantity %></span> ×
+                                                            <span class="dropcart__product-price"><%= product.price3 %> ₺</span>
+                                                        </div>
+                                                    </div>
+                                                    <form action="/delete-cartitem" method="POST">
+                                                        <input type="hidden" value="<%= csrfToken %>" name="_csrf">
+                                                        <input type="hidden" name="productid" value="<%= product.productId %>">       
+                                                        <button type="submit" class="btn btn-light btn-sm btn-svg-icon">
+                                                           <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                <% } %>
+                                            </div>
+                                            <div class="dropcart__totals">
+                                                <table>
+                                                    <tr>
+                                                        <th>Tutar</th>
+                                                        <td>200.00 ₺</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Kargo</th>
+                                                        <td>Ücretsiz</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Genel Toplam</th>
+                                                        <td>200.00 ₺ </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="dropcart__buttons">
+                                                <a class="btn btn-secondary" href="/sepetim">Sepetim</a>
+                                                <a class="btn btn-primary" href="/teslimat">Tamamla</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <%} else { %>
+                                    <div class="dropcart dropcart--style--dropdown" style="border-radius: 0.4rem;">
+                                            <div class="dropcart__body">
+                                                <div class="block-empty__body">
+                                                    <div class="block-empty__message">
+                                                        <br>
+                                                        Sepetiniz Boş 
+                                                        <p>
+                                                        Alışverişinize sizin için önerdiğimiz ürünlere göz atarak başlayabilirsiniz.
+                                                         </p>
+                                                    </div>
+                                                    <div class="block-empty__actions">
+                                                        <a class="btn btn-primary btn-sm" href="/kampanyalar">Alışverişe Devam</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                   </div>
+                                     <% } %>
+                                    <!-- .dropcart / end -->
+                                </div>
+                            </div>
+                            <div class="indicator indicator--trigger--click">
+                                <a href="/login" class="indicator__button">
+                                    <span class="indicator__area">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                </a>
+                                <div class="indicator__dropdown">
+                                    <div class="account-menu" style="border-radius: 0.5rem;">
+                                        <% if (!isAuthenticated) { %>
+                                            <form class="account-menu__form" action="/login" method="POST">
+                                                <div class="account-menu__form-title">Giriş Yap</div>
+                                                <div class="form-group">
+                                                    <input type="hidden" value="<%= csrfToken %>" name="_csrf">
+                                                    <label for="header-signin-email" class="sr-only">E-posta</label>
+                                                    <input id="header-signin-email" type="email" name="email" class="form-control form-control-sm" placeholder="e-posta">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="header-signin-password" class="sr-only">Şifre</label>
+                                                    <div class="account-menu__form-forgot">
+                                                        <input id="header-signin-password" type="password" name="password" class="form-control form-control-sm" placeholder="şifre">
+                                                        <a href="/reset-password" class="account-menu__form-forgot-link">şifremi unuttum?</a>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group account-menu__form-button">
+                                                    <button type="submit" class="btn btn-primary btn-sm">Giriş Yap</button>
+                                                </div>
+                                                <div class="account-menu__form-link"><a href="/login">Üye Ol</a></div>
+                                            </form>
+                                            <%} else { %>
+                                                <div class="account-menu__divider"></div>
+                                                <a href="/hesabim" class="account-menu__user">
+                                                    <div class="account-menu__user-avatar">
+                                                        <img src="/images/user.png" alt="">
+                                                    </div>
+                                                    <div class="account-menu__user-info">
+                                                        <div class="account-menu__user-name"><%= userInfo.name %></div>
+                                                        <div class="account-menu__user-email"><%= userInfo.email %></div>
+                                                    </div>
+                                                </a>
+                                                <div class="account-menu__divider"></div>
+                                                <div class="account-menu__divider"></div>
+                                                <ul class="account-menu__links">
+                                                    <li><a href="/hesabim">Profilim</a></li>
+                                                    <li><a href="/sepetim">Sepetim</a></li>
+                                                    <li><a href="/siparislerim">Siparişlerim</a></li>
+                                                    <li><a href="/hediye-ceklerim">Hediye Çeklerim</a></li>
+                                                    <li><a href="/logout">Çıkış Yap</a></li>
+                                                </ul>
+                                            <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- desktop site__header / end -->

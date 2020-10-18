@@ -1,0 +1,152 @@
+<%- include('includes/admin-head'); -%>
+
+<!-- Add the class .fixed to <body> for a fixed layout on large resolutions (min: 1200px) -->
+<!-- <body class="fixed"> -->
+
+<body>
+    <div class="loader"></div>
+    <!-- Page Container -->
+    <div id="page-container">
+        <!-- Header -->
+        <!-- Add the class .navbar-fixed-top or .navbar-fixed-bottom for a fixed header on top or bottom respectively -->
+        <!-- <header class="navbar navbar-inverse navbar-fixed-top"> -->
+        <%- include('includes/admin-header'); -%>
+
+        <!-- Inner Container -->
+        <div id="inner-container">
+
+            <%- include('includes/admin-side'); -%>
+
+             <!-- Page Content -->
+                <div id="page-content">
+                    <!-- Navigation info -->
+                    <ul id="nav-info" class="clearfix">
+                        <li><a href="/admin"><i class="fa fa-home"></i></a></li>
+                        <li><a href="/admin/products">Ürün İşlemleri</a></li>
+                        <li class="active"><a href="">Ürün Düzenle</a></li>
+                    </ul>
+                    <!-- END Navigation info -->
+                
+                    <!-- Input Grid -->
+                    <form action="/admin/products" method="POST" class="form-horizontal form-box remove-margin">
+                        <h4 class="form-box-header">Ürün Detay -> <%= product.title %>
+                            <label style="left: 52em;" class="switch switch-success"><input checked="<%= product.isActive %>" type="checkbox">
+                                <span></span>
+                            </label>
+                        </h4>
+                        <div class="form-box-content">
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <input type="hidden" name="id" value="<%= product._id %>">
+                                    <label for="prodcut-label">Ürün İsmi</label>
+                                    <input type="text" name="label" class="form-control" value="<%= product.label %>" placeholder="">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="product-brand">Markası</label>
+                                    <input type="text" name="brand" value="<%= product.brand %>" class="form-control" placeholder="">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="product-barcode">Barkodu</label>
+                                    <input type="text" name="barcode" value="<%= product.barcode %>" class="form-control" placeholder="">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="product-status">Durumu</label>
+                                    <select id="example-select" name="isActive" class="form-control">
+                                        <option value="true"><%= product.isActive %></option>
+                                        <option value="false">Pasif</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <label for="product-buyingprice">Stok Türü</label>
+                                    <input type="text" name="stockType" value="<%= product.stockType %>" class="form-control" placeholder=".col-md-6">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="product-buyingprice">Alış Fiyatı</label>
+                                    <input type="text" name="buyingPrice" value="<%= product.buyingPrice %>" class="form-control" placeholder=".col-md-6">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="product-buyingprice">Satış Fiyatı</label>
+                                    <input type="text" name="price3" value="<%= product.price3 %>" class="form-control" placeholder=".col-md-6">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="product-buyingprice">KDV Oranı</label>
+                                    <select id="example-select" name="tax" class="form-control">
+                                        <option selected>% <%= product.tax %></option>
+                                        <option value="8">% 8</option>
+                                        <option value="1">% 1</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-1">
+                                    <label for="product-buyingprice">Stok Adedi</label>
+                                    <input type="number" name="stockAmount" value="<%= product.stockAmount %>" class="form-control" placeholder=".col-md-6">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="product-buyingprice">Renk</label>
+                                    <select id="example-select" name="color" class="form-control">
+                                        <option selected><%= product.color %></option>
+                                        <option value="8">Yeşil</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="product-buyingprice">Stok Kodu</label>
+                                    <input type="text" name="stockCode" value="<%= product.stockCode %>" class="form-control" placeholder=".col-md-6">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="product-buyingprice">Meta Açıklaması</label>
+                                    <input type="text" name="metaDescription" value="<%= product.metaDescription %>" class="form-control" placeholder="meta açklaması">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="product-buyingprice">Anahtar Kelimeler</label>
+                                    <select id="example-select-chosen-multiple" name="tags" class="form-control select-chosen" multiple>
+                                        <option>kalem</option>
+                                        <option>kağıt</option>
+                                        <option>makas</option>
+                                        <option>bardak</option>
+                                        <option>su</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="example-textarea-ckeditor">Ürün Detayı</label>
+                                <div class="col-md-12">
+                                    <textarea id="details" name="details" class="ckeditor"><%= product.details %></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                            <a href="/admin/products" style="left: 12em;" class="btn btn-danger"><i class="fa fa-times"></i> Vazgeç</a>
+                            <button type="submit" style="left: 12em;" class="btn btn-success"><i class="fa fa-floppy-o"></i> Kaydet</button>
+                        </div>
+                        </div>
+                    </form>
+                    <!-- END Input Grid -->
+                </div>
+                <!-- END Page Content -->
+
+            <!-- Footer -->
+            <footer>
+                <span id="year-copy"></span> &copy; <strong><a href="http://goo.gl/9QhXQ">uAdmin 2.1</a></strong> -
+                Crafted with <i class="fa fa-heart text-danger"></i> by <strong><a href="http://goo.gl/vNS3I"
+                        target="_blank">pixelcave</a></strong>
+            </footer>
+            <!-- END Footer -->
+        </div>
+        <!-- END Inner Container -->
+    </div>
+    <!-- END Page Container -->
+
+    <!-- Scroll to top link, check main.js - scrollToTop() -->
+    <a href="javascript:void(0)" id="to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- User Modal Settings, appears when clicking on 'User Settings' link found on user dropdown menu (header, top right) -->
+    <%- include('includes/user-modal'); -%>
+
+    <%- include('includes/admin-script'); -%>
+
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<%- include('includes/admin-head'); -%>
+
+<!-- Add the class .fixed to <body> for a fixed layout on large resolutions (min: 1200px) -->
+<!-- <body class="fixed"> -->
+
+<body>
+    <div class="loader"></div>
+    <!-- Page Container -->
+    <div id="page-container">
+        <!-- Header -->
+        <!-- Add the class .navbar-fixed-top or .navbar-fixed-bottom for a fixed header on top or bottom respectively -->
+        <!-- <header class="navbar navbar-inverse navbar-fixed-top"> -->
+        <%- include('includes/admin-header'); -%>
+
+        <!-- Inner Container -->
+        <div id="inner-container">
+
+            <%- include('includes/admin-side'); -%>
+
+             <!-- Page Content -->
+                <div id="page-content">
+                    <!-- Navigation info -->
+                    <ul id="nav-info" class="clearfix">
+                        <li><a href="/admin"><i class="fa fa-home"></i></a></li>
+                        <li><a href="/admin/products">Sayfa İşlemleri</a></li>
+                        <li class="active"><a href="">Sayfa Düzenle</a></li>
+                    </ul>
+                    <!-- END Navigation info -->
+                
+                    <!-- Input Grid -->
+                    <form action="/admin/pages" method="POST" class="form-horizontal form-box remove-margin">
+                        <h4 class="form-box-header">Sayfa Detay ->  <%= page.name %></h4>
+                        <div class="form-box-content">
+                            <div class="form-group">
+                                <div class="col-md-6"> 
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <input type="hidden" name="id" value="<%= page._id %>">
+                                    <label for="prodcut-label">Sayfa ID</label>
+                                    <input type="text" disabled  class="form-control" value="<%= page._id %>" placeholder="">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="product-brand">Sayfa İsmi</label>
+                                    <input type="text" name="name" value="<%= page.name %>" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="example-textarea-ckeditor">Sayfa Detay</label>
+                                <div class="col-md-12">
+                                    <textarea id="description" name="description" class="ckeditor"><%= page.description %></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                            <a href="/admin/pages" style="left: 12em;" class="btn btn-danger"><i class="fa fa-times"></i> Vazgeç</a>
+                            <button type="submit" style="left: 12em;" class="btn btn-success"><i class="fa fa-floppy-o"></i> Kaydet</button>
+                        </div>
+                        </div>
+                    </form>
+                    <!-- END Input Grid -->
+                </div>
+                <!-- END Page Content -->
+
+            <!-- Footer -->
+            <footer>
+                <span id="year-copy"></span> &copy; <strong><a href="http://goo.gl/9QhXQ">uAdmin 2.1</a></strong> -
+                Crafted with <i class="fa fa-heart text-danger"></i> by <strong><a href="http://goo.gl/vNS3I"
+                        target="_blank">pixelcave</a></strong>
+            </footer>
+            <!-- END Footer -->
+        </div>
+        <!-- END Inner Container -->
+    </div>
+    <!-- END Page Container -->
+
+    <!-- Scroll to top link, check main.js - scrollToTop() -->
+    <a href="javascript:void(0)" id="to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- User Modal Settings, appears when clicking on 'User Settings' link found on user dropdown menu (header, top right) -->
+    <%- include('includes/user-modal'); -%>
+
+    <%- include('includes/admin-script'); -%>
+
+</body>
+
+</html>

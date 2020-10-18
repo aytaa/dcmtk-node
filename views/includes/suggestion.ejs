@@ -1,0 +1,27 @@
+<ul class="suggestions__list">
+    <% for (let devProducts of products) { %>
+    <li class="suggestions__item">
+        <div class="suggestions__item-image product-image">
+            <div class="product-image__body">
+                <img class="product-image__img" src="<%= devProducts.picture1Path %>" alt="">
+            </div>
+        </div>
+        <div class="suggestions__item-info">
+            <a href="/products/<%= devProducts._id %>" class="suggestions__item-name">
+                <%= devProducts.label %>
+            </a>
+            <div class="suggestions__item-meta">Renk: <%= devProducts.color %></div>
+        </div>
+        <div class="suggestions__item-price">
+            <%= devProducts.price3 %>
+        </div>
+        <div class="suggestions__item-actions">
+            <form action="/sepetim" method="POST">
+                <input  type="hidden" value="<%= csrfToken %>" name="_csrf">
+                <input  type="hidden" name="productId" value="<%= products._id %>" >    
+                <button type="submit" class="btn btn-primary product-card__addtocart"><i class="fa fa-shopping-cart"></i></button>
+            </form>
+        </div>
+    </li>
+    <% } %>
+</ul>
