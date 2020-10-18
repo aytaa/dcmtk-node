@@ -230,7 +230,7 @@ exports.getReset = (req, res, next) => {
   
     res.render('account/reset-password' , 
     {
-      title : 'Marjinal Panel | Şifremi Unuttum',
+      title : 'Wado | Reset Password',
       errorMessage : errorMessage,
       SuccessMessage : SuccessMessage
     });
