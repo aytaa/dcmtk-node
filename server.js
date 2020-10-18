@@ -18,7 +18,7 @@ const errorController = require('./controllers/errors');
 const accountRoutes = require('./routes/account');
 
 const User = require('./models/user');
-const ConnectionString = 'mongodb+srv://ayta:Odak1098@cluster0-zrcks.mongodb.net/marjinal?retryWrites=true&w=majority';
+const ConnectionString = 'mongodb+srv://ayta:Odak1098@cluster0-zrcks.mongodb.net/wado?retryWrites=true&w=majority';
 
 var store = new mongoDbStore({
     uri: ConnectionString,
@@ -54,7 +54,7 @@ app.use((req, res, next) => {
 
 app.use(csurf());
 app.use(cors());
-app.use('/', route);
+app.use('/', adminRoutes);
 app.use('/' , accountRoutes);
 app.use(errorController.get404Page);
 

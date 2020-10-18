@@ -12,7 +12,7 @@ exports.getIndex = (req, res, next) => {
     delete req.session.errorMessage;
 
     res.render('admin/admin-index', {
-        title: 'Marjinals | Marketplace Panel',
+        title: 'Wado Panel',
         page_name: 'panel',
         userInfo : req.user,
         SuccessMessage : SuccessMessage,

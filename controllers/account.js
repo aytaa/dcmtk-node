@@ -23,7 +23,7 @@ transporter.verify(function(error, success) {
     } else {
       console.log("Server is ready to take our messages");
     }
-  });
+  }); 
 
    /* Verify mail themes. */
   transporter.use('compile', hbs({
@@ -39,9 +39,9 @@ exports.getLogin = (req, res, next) => {
     delete req.session.SuccessMessage;
     delete req.session.errorMessage;
 
-    res.render('account/login', 
+    res.render('account/logins', 
       { 
-        title: 'Marjinal Panel | Giriş Yap' ,
+        title: 'Wado Panel | Login' ,
         errorMessage : errorMessage,
         SuccessMessage : SuccessMessage,
         userInfo : req.session.user
